@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evening Raga — Chord Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===========================================================
+     EVENING RAGA — Chord Book
+     A library-quiet, paper-and-ink aesthetic.
+     =========================================================== */
+
+  :root {
+    --bg:           #f4eede;
+    --bg-grain:     #efe7d2;
+    --surface:      #fbf7ec;
+    --surface-2:    #ede4ce;
+    --surface-3:    #e3d8bd;
+    --border:       #d6c9a8;
+    --border-soft:  #e6dcc1;
+    --border-strong:#b3a17a;
+    --rule:         #c9b88e;
+    --text:         #261d12;
+    --text-soft:    #4a3d2c;
+    --text-muted:   #8a7857;
+    --accent:       #8a2a1a;
+    --accent-2:     #b46a3a;
+    --accent-soft:  rgba(138,42,26,0.10);
+    --chord:        #8a2a1a;
+    --chord-bg:     rgba(138,42,26,0.07);
+    --chord-bg-2:   rgba(138,42,26,0.18);
+    --section:      #5b6b3a;
+    --section-bg:   rgba(91,107,58,0.10);
+    --gold:         #a47832;
+    --gold-soft:    rgba(164,120,50,0.14);
+    --shadow-sm:    0 1px 2px rgba(60,40,15,0.05);
+    --shadow:       0 1px 2px rgba(60,40,15,0.05), 0 6px 22px rgba(60,40,15,0.07);
+    --shadow-lg:    0 2px 6px rgba(60,40,15,0.08), 0 12px 32px rgba(60,40,15,0.10);
+
+    --serif:        'EB Garamond', 'Iowan Old Style', 'Cambria', Georgia, serif;
+    --display:      'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+    --mono:         'JetBrains Mono', 'SF Mono', 'Menlo', 'Consolas', 'Courier New', monospace;
+    --sans:         -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+
+  [data-theme="dark"] {
+    --bg:           #0f0c07;
+    --bg-grain:     #14110a;
+    --surface:      #18140c;
+    --surface-2:    #221c11;
+    --surface-3:    #2c2417;
+    --border:       #34291a;
+    --border-soft:  #261f12;
+    --border-strong:#5a4a30;
+    --rule:         #4a3a22;
+    --text:         #ede2c5;
+    --text-soft:    #c8b88f;
+    --text-muted:   #8a7853;
+    --accent:       #d97a4f;
+    --accent-2:     #e8a06d;
+    --accent-soft:  rgba(217,122,79,0.13);
+    --chord:        #e89569;
+    --chord-bg:     rgba(232,149,105,0.10);
+    --chord-bg-2:   rgba(232,149,105,0.22);
+    --section:      #a4b87e;
+    --section-bg:   rgba(164,184,126,0.10);
+    --gold:         #d4a652;
+    --gold-soft:    rgba(212,166,82,0.14);
+    --shadow-sm:    0 1px 2px rgba(0,0,0,0.4);
+    --shadow:       0 1px 2px rgba(0,0,0,0.4), 0 6px 22px rgba(0,0,0,0.5);
+    --shadow-lg:    0 2px 6px rgba(0,0,0,0.5), 0 12px 32px rgba(0,0,0,0.6);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.55;
+    background:
+      radial-gradient(at 18% 8%, var(--bg-grain), transparent 60%),
+      radial-gradient(at 84% 92%, var(--bg-grain), transparent 60%),
+      var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background 0.4s, color 0.4s;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--chord-bg-2); color: var(--text); }
+
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap;
+  }
+  .h-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+  header h1 {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: italic;
+  }
+  header h1 .sub {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-style: normal;
+    margin-left: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: var(--sans);
+    font-weight: 400;
+  }
+  .back-btn {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    color: var(--text-soft);
+    cursor: pointer;
+    padding: 7px 14px;
+    font-size: 0.78rem;
+    font-family: var(--sans);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: none;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+  }
+  .back-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .back-btn.visible { display: inline-flex; }
+
+  .h-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 11px;
+    font-size: 0.74rem;
+    font-family: var(--sans);
+    color: var(--text-soft);
+    letter-spacing: 0.06em;
+  }
+  .chip label {
+    cursor: pointer;
+    user-select: none;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+  .icon-btn {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-soft);
+    cursor: pointer;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.18s;
+    font-family: var(--sans);
+    font-weight: 600;
+  }
+  .icon-btn:hover { background: var(--accent); color: white; }
+  .icon-btn:disabled { opacity: 0.3; cursor: default; }
+  .icon-btn:disabled:hover { background: transparent; color: var(--text-soft); }
+  .pill {
+    min-width: 30px;
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--chord-bg);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: var(--mono);
+  }
+
+  .switch {
+    width: 30px; height: 16px;
+    background: var(--border-strong);
+    border-radius: 999px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .switch.on { background: var(--accent); }
+  .switch::after {
+    content: '';
+    position: absolute;
+    width: 12px; height: 12px;
+    background: var(--surface);
+    border-radius: 50%;
+    top: 2px; left: 2px;
+    transition: left 0.3s, background 0.3s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  }
+  .switch.on::after { left: 16px; }
+
+  #list-view { max-width: 760px; margin: 0 auto; padding: 38px 22px 80px; }
+
+  .hero {
+    text-align: center;
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .hero::before {
+    content: '✦';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold);
+    font-size: 0.9rem;
+    background: var(--bg);
+    padding: 0 12px;
+  }
+
+  .hero-title {
+    font-family: var(--display);
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+    font-style: italic;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .hero-subtitle {
+    font-family: var(--sans);
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+  .hero-count {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .search-bar {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .search-bar input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 12px 18px 12px 42px;
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
+    outline: none;
+    transition: all 0.2s;
+  }
+  .search-bar input::placeholder { color: var(--text-muted); opacity: 0.7; }
+  .search-bar input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--chord-bg);
+  }
+  .search-bar::before {
+    content: '⌕';
+    position: absolute;
+    left: 18px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-family: var(--display);
+  }
+
+  .set-header {
+    text-align: center;
+    margin: 6px 0 18px;
+    padding: 0 0 8px;
+  }
+  .set-header.first { margin-top: 0; }
+  .set-header .set-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .set-header .set-title {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .break-divider {
+    margin: 30px 0 28px;
+    text-align: center;
+    position: relative;
+    height: 28px;
+  }
+  .break-divider::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+  }
+  .break-divider .label {
+    position: relative;
+    display: inline-block;
+    background: var(--bg);
+    padding: 0 18px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold);
+    letter-spacing: 0.16em;
+    line-height: 28px;
+  }
+  .break-divider .label::before,
+  .break-divider .label::after {
+    content: '✦';
+    margin: 0 8px;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  .song-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 7px;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+  .song-item:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    transform: translateX(2px);
+  }
+  .song-item:hover::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 6px 0 0 6px;
+  }
+  .song-num {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    min-width: 28px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .song-title {
+    flex: 1;
+    font-family: var(--display);
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .song-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .song-key {
+    font-size: 0.7rem;
+    color: var(--accent);
+    background: var(--chord-bg);
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--chord-bg-2);
+  }
+  .song-remark {
+    font-size: 0.7rem;
+    color: var(--section);
+    background: var(--section-bg);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-style: italic;
+    font-family: var(--serif);
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid rgba(91,107,58,0.18);
+  }
+  .song-arrow {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    opacity: 0.45;
+    transition: all 0.2s;
+    font-family: var(--display);
+  }
+  .song-item:hover .song-arrow {
+    color: var(--accent);
+    opacity: 1;
+    transform: translateX(3px);
+  }
+
+  .no-results {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 50px 20px;
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+
+  #chord-view { display: none; padding: 28px 18px 80px; }
+  .chord-frame { max-width: 920px; margin: 0 auto; }
+
+  .chord-header {
+    text-align: center;
+    margin-bottom: 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+  .chord-header h2 {
+    font-family: var(--display);
+    font-size: 2.4rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    font-style: italic;
+  }
+  .chord-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .meta-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--chord-bg);
+    color: var(--accent);
+    padding: 4px 13px;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-family: var(--mono);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--chord-bg-2);
+  }
+  .meta-tag.remark-tag {
+    background: var(--section-bg);
+    color: var(--section);
+    border-color: rgba(91,107,58,0.20);
+    font-style: italic;
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .chord-content {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 36px 40px 40px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  .chord-content::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
+    opacity: 0.45;
+    border-radius: 4px 4px 0 0;
+  }
+  .chord-content .scroll-inner { min-width: min-content; }
+
+  .chord-line, .lyric-line, .plain-line {
+    font-family: var(--mono);
+    white-space: pre;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .chord-line {
+    color: var(--chord);
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+    margin-top: 4px;
+  }
+  .lyric-line {
+    color: var(--text);
+    font-size: 0.96rem;
+    margin-bottom: 2px;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+  .plain-line {
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+  .chord-token {
+    background: var(--chord-bg);
+    border-radius: 3px;
+    padding: 0 3px;
+    color: var(--chord);
+  }
+
+  .section-label {
+    display: inline-block;
+    color: var(--section);
+    background: var(--section-bg);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 999px;
+    margin: 22px 0 10px;
+    border: 1px solid rgba(91,107,58,0.20);
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  .blank-line { height: 0.7em; }
+
+  .page-marker {
+    display: block;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-align: right;
+    margin: 14px 0 4px;
+    opacity: 0.55;
+    border-top: 1px dashed var(--border);
+    padding-top: 4px;
+  }
+
+  body.chords-off .chord-line { display: none; }
+  body.chords-off .chord-token {
+    background: transparent;
+    color: inherit;
+    font-weight: inherit;
+    padding: 0;
+  }
+  body.chords-off .meta-tag.key-tag { opacity: 0.4; }
+  body.chords-off .inline-line .chord-token { display: none; }
+
+  .song-nav {
+    margin-top: 26px;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .nav-btn {
+    flex: 1;
+    max-width: 320px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 11px 20px;
+    cursor: pointer;
+    color: var(--text-soft);
+    font-size: 0.82rem;
+    font-family: var(--sans);
+    letter-spacing: 0.06em;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .nav-btn.next { justify-content: flex-end; }
+  .nav-btn:hover:not(:disabled) {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+  body.fs-sm .chord-line  { font-size: 0.80rem; }
+  body.fs-sm .lyric-line  { font-size: 0.83rem; }
+  body.fs-sm .plain-line  { font-size: 0.78rem; }
+  body.fs-lg .chord-line  { font-size: 1.06rem; }
+  body.fs-lg .lyric-line  { font-size: 1.10rem; }
+  body.fs-lg .plain-line  { font-size: 1.00rem; }
+  body.fs-xl .chord-line  { font-size: 1.22rem; }
+  body.fs-xl .lyric-line  { font-size: 1.26rem; }
+  body.fs-xl .plain-line  { font-size: 1.14rem; }
+
+  .chord-content::-webkit-scrollbar { height: 8px; }
+  .chord-content::-webkit-scrollbar-track { background: var(--surface-2); border-radius: 4px; }
+  .chord-content::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+  .chord-content::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  .scroll-top {
+    position: fixed;
+    bottom: 26px; right: 26px;
+    width: 44px; height: 44px;
+    background: var(--accent);
+    color: white;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.05rem;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 50;
+    font-family: var(--display);
+  }
+  .scroll-top.visible { opacity: 0.94; pointer-events: auto; }
+  .scroll-top:hover { transform: translateY(-3px); opacity: 1; }
+
+  @media (max-width: 740px) {
+    header { padding: 11px 14px; gap: 8px; }
+    header h1 { font-size: 1.15rem; }
+    header h1 .sub { display: none; }
+    .chip { font-size: 0.68rem; padding: 4px 9px; gap: 5px; }
+    .chord-content { padding: 22px 18px 26px; }
+    .chord-header h2 { font-size: 1.6rem; }
+    .hero-title { font-size: 2rem; }
+    #chord-view { padding: 18px 10px 60px; }
+    .nav-btn { font-size: 0.74rem; padding: 9px 14px; }
+    .song-title { font-size: 1.05rem; }
+    .song-remark { display: none; }
+  }
+  @media (max-width: 480px) {
+    .h-right { width: 100%; justify-content: flex-end; }
+    .chip.font-ctrl { display: none; }
+    .song-key { font-size: 0.66rem; }
+  }
+
+  @media print {
+    header, .song-nav, .back-btn, .chip, .h-right, .scroll-top { display: none !important; }
+    .chord-content { border: none; box-shadow: none; padding: 0; }
+    .chord-content::before { display: none; }
+    body { background: white; color: black; }
+    .chord-line, .chord-token { color: #8a2a1a !important; }
+    .chord-header h2 { color: #8a2a1a !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-left">
+    <button class="back-btn" id="backBtn" onclick="showList()">← Songs</button>
+    <h1 id="headerTitle">Evening Raga<span class="sub">Chord Book</span></h1>
+  </div>
+  <div class="h-right" id="headerControls">
+    <div class="chip song-ctrl" id="transposeCtrl" style="display:none">
+      <label title="Transpose semitones">Key</label>
+      <button class="icon-btn" onclick="transpose(-1)" title="Down">−</button>
+      <span class="pill" id="tVal">0</span>
+      <button class="icon-btn" onclick="transpose(+1)" title="Up">+</button>
+    </div>
+    <div class="chip song-ctrl" id="chordToggle" style="display:none">
+      <label onclick="toggleChords()">Chords</label>
+      <div class="switch on" id="chordSwitch" onclick="toggleChords()"></div>
+    </div>
+    <div class="chip song-ctrl font-ctrl" id="fontCtrl" style="display:none">
+      <label title="Text size">A</label>
+      <button class="icon-btn" onclick="changeFontSize(-1)">−</button>
+      <span class="pill" id="fsVal" style="min-width:24px">M</span>
+      <button class="icon-btn" onclick="changeFontSize(+1)">+</button>
+    </div>
+    <div class="chip">
+      <label onclick="toggleTheme()" id="themeLabel" style="font-size:0.95rem">☼</label>
+      <div class="switch" id="themeSwitch" onclick="toggleTheme()"></div>
+    </div>
+  </div>
+</header>
+
+<div id="list-view">
+  <div class="hero">
+    <div class="hero-title">Evening Raga</div>
+    <div class="hero-subtitle">A chord book · <span class="hero-count" id="songCount">0</span> songs</div>
+  </div>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search by title, key, or note…" oninput="filterList()" />
+  </div>
+  <div id="songList"></div>
+</div>
+
+<div id="chord-view">
+  <div class="chord-frame">
+    <div class="chord-header">
+      <h2 id="songTitle"></h2>
+      <div class="chord-meta" id="chordMeta"></div>
+    </div>
+    <div class="chord-content" id="chordContent">
+      <div class="scroll-inner" id="chordContentInner"></div>
+    </div>
+    <div class="song-nav">
+      <button class="nav-btn prev" id="prevBtn" onclick="navigateSong(-1)">← Prev</button>
+      <button class="nav-btn next" id="nextBtn" onclick="navigateSong(+1)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+
+<script id="songs-data" type="application/json">
+[
+  {
+    "title": "Vaseegara",
+    "key": "Am",
+    "remarks": "Minnale · Harris Jayaraj · Bombay Jayashri",
+    "chords": "[Pallavi]\nAm\nVaseegaraa en nenjinikka\nAm                                    G\nUn pon madiyil thoonginaal poadhum\nAm\nAdhae kaNam en kaNNuRanga mun\nAm                                    G\nJenmangalin aekkangaL theerum\n\nAm             G              F\nNaan naesippadhum suvaasippadhum\nG                Am\nUn dhayavaal thaanae\nG                F\nAengugiraen aengugiraen\nE                    Am\nUn ninaivaal naanae naan\n\n[Charanam 1]\nAm\nAdai mazhai varum adhil nanaivoamae\nEm\nKulir kaaychchaloadhu snekam\nDm                  C        E\nOru poarvaikkul iru thookkam\nAm\nKulu kulu poygal solli enai velvaay\nEm\nAdhu therindhum kooda anbae\nDm                       C       E\nManam adhaiyaedhaan edhirpaarkkum\n\nAm                  Em\nEngaeyum poagaamal\nF                       G\nDhinam veettilaeyae nee vaendum\nAm                  G\nSila samayam vilaiyaattaay\nDm                E\nUn aadaikkul naan vaendum\n\n[Pallavi reprise]\nAm\nVaseegaraa en nenjinikka\nAm                                    G\nUn pon madiyil thoonginaal poadhum\n\n[Charanam 2]\nAm\nDhinam nee kulithadhum enai thaedi\nEm\nEn saelai nuniyaal undhan\nDm                       C       E\nThalai thudaippaayae adhu kavidhai\nAm\nThirudan poal padhungiyae dhideer enru\nEm\nPinnaalirundhu ennai\nDm                  C       E\nNee anaippaayae adhu kavidhai\n\nAm                       Em\nYaaraenum mani kaettaal\nF                          G\nAdhai solla kooda theriyaadhae\nAm                       G\nKaadhalenum mudivinile\nDm                       E\nGadigaara naeram kidaiyaadhae\n\n[Outro]\nAm\nVaseegaraa en nenjinikka..."
+  },
+  {
+    "title": "O butterfly",
+    "key": "Dm",
+    "remarks": "",
+    "chords": "Dm    Gm        Dm    Bb\nOh butterfly butterfly\nC      Dm       Gm   Bb\nYen virithaai siragai..\n\nVa va\n\nDm    Gm        Dm    Bb\nOh butterfly butterfly\nC      Dm       Gm   Bb\nYen virithaai siragai..\n\n   Dm         Bb\nArugil nee varuvaayo\n   Eb         C       C#dim7    A\nUnakagha thirandhen manadhin kadhavai\n\n[Chorus]\nDm    Gm        Dm    Bb\nOh butterfly butterfly\nC      Dm       Gm   Bb\nYen virithaai siragai..\n\nVa va\n\nDm    Gm        Dm    Bb\nOh butterfly butterfly\nC      Dm       Gm   Bb\nYen virithaai siragai..\n\n          Dm       Bb\nYenaiyum dhaan unaipolae\n        Eb      C   C#dim7 A       Asus4\nPadaithanae iraivan yenum orr thalaivan\n\n[Instrumental]\nDm Gm F Gm F A\n\nDm Gm Am F Bb F/A Bb C\n\nDm\n\n[Verse 2]\n    F\nNerungumbodhu aghapadamal\n    F\nParandhu pogiraai\n F\nNizhalai pola thodarum yennai\n   C\nMarandhu pogiraai\n\nA       F\nahaa unakku yaarum thadaiyum\nF\nInghu vidhipadhillaiyae\nA        F\nahaa yenakum kooda adimaikolam\n           C\nPidipadhillaiyae\n\n     Dm         Gm\nUnai naan sandhithen…\n  C7           F\nunaiyae sindhithen\n       Dm        Bb\nYenai nee inai serum\nEb            C      A\nThirunaal varumo butterfly butterfly\n\nA      Dm     Gm    Dm   Bb\nahhaa oh butterfly butterfly\n\n[Instrumental]\nDm Am F C  x8"
+  },
+  {
+    "title": "Sundari Kannal",
+    "key": "G",
+    "remarks": "Merge with Vellai Pura",
+    "chords": "G      C           G\nSundari Kannaal Oru Saethi\n     G    C\nSolladi Innaal Nalla Thaethi\n     G       C           G\nEnnaiyae Thandhaen Unakkaaga\n     G      C\nJenmamae Kondaen Atharkaaga\nC          Am     Em\nNaan Unnai Neenga Maattaen\nC          Am      Em\nNeenginaal Thoonga Maattaen\nAm                G Am D\nSaernthathey Naam Jeevanae\n\n[Verse]\nC\nVaai Mozhintha Vaarthai Yaavum Kaatril Poanaal Nyaayamaa\n                            B             Em\nPaai Virithu Paavai Paartha Kaathal Inbam Maayamaa\n       C\nAaah.. Vaal Pidithu Ninraal Kooda Nenjil Unthan Oorvalam\n                               B            Em\nPoarkkalathil Saainthaal Kooda Jeevan Unnai Saernthidum\nC               G      C   B     C    Am\nThaenilavu Naan Vaazha Aen Intha Sothanai\nC                G     C      B  C\nVaan Nilavai Nee Kaelu Koorum En Vaethanai\n    G       C        Am  G\nEnaithaan Anbae Maranthaayo..\n    G       C\nMarappaen Enrae Ninaithaayo..\n\n[Verse]\nC\nSolaiyilum mutkal thondrum naanum neeyum neenginaal\n B          Em\nPaalaiyilum pookkal pookkum naan un maarbil thoonginaal\n       C\nAaah.. mathangalum vaaram aagum naanum neeyum Koodinaal\n                         B             Em\nVarangalum maatham aagum paathai maari oodinaal\nC             G      C   B     C    Am\nKodi sugam vaaraatho nee ennai theendinaal\nC              G     C   B     C\nKaayangalum aaraatho nee ethir thondrinaal\n   G      C          Am  G\nUdanae vanthaal uyir vaazhum\n   G      C\nVaruven annaal varakkoodum"
+  },
+  {
+    "title": "Vellai Pura",
+    "key": "C",
+    "remarks": "Pudhu Kavithai · Ilaiyaraaja",
+    "chords": "[Intro]\nC  F  Am  G\n\n[Pallavi]\nC                  F             Am             G\nVellai pura ondru yengudhu kaiyil varaamalae\nC                  F            Am          G\nNamadhu kadhai pudhu kavidhai, ilakanangal idharku illai\n          F          C\nNaan undhan poo maalai oh oh\n\nC                  F             Am             G\nVellai pura ondru yengudhu kaiyil varaamalae\n\n[Verse 1]\nF                       C\nGangai vellam paayum bodhu, karaigal enna veliyo\nF                            C\nAaviyodu serndha jothi paadhai maara koodumo\nDm                       Am\nManangalin niram paartha kaadhal mugangalin niram paarkumo\nF              G            C\nNee kondu vaa kaadhal varam\nF             G                Am\nPoo thoovumae panneer maram\nF                           Bb\nSoodaana kanavugal kannodu thallaada\n\nC                  F             Am             G\nVellai pura ondru yengudhu kaiyil varaamalae\n\n[Verse 2]\nF                                  C\nPoovil serndhu vaazhntha vaasam, kaaval thanai meerumae\nF                              C\nKaalam maarum endra podhum kaadhal nadhi oorumae\nDm                          Am\nVaraiyaraigalai maatrum bodhu thalaimuraigalum maarumae\nF              G               C\nEndrum undhan nenjoramae\nF              G               Am\nAnbae undhan sanjaaramae\nF                              Bb\nKaarkaala silirpugal kannoram undaaga\n\nC                  F             Am             G\nVellai pura ondru yengudhu kaiyil varaamalae\nC                  F            Am          G\nNamadhu kadhai pudhu kavidhai, ilakanangal idharku illai\n          F          C\nNaan undhan poo maalai oh oh"
+  },
+  {
+    "title": "Paatu Paadava",
+    "key": "Dm",
+    "remarks": "Then Nilavu · A.M. Rajah",
+    "chords": "Dm                A\nPaattu paada vaa, paarthu pesa vaa\nGm                  A\nPaadam solla vaa, parandhu sella vaa\nDm                Gm                A\nPaal nilaavai pola vandha paavai allavaa\n             A          Gm           Bb        Dm\nNaanum paadhai thedi odi vandha kaalai allavaa\n\n[Verse 1]\nDm                                Bb\nMega vannam pola minnum aadayinaale\nA            Gm                Bb         Dm\nMalai meni yellam mooduthamma naanaththinaale\nF                                  F\nPakkamaaga vandha pinnum vetkamaaguma\n      Gm           Gm                Bb         Dm\nInge paarvaiyodu paarvai sera thoodhu vendumaa\nDm                  F\nMaalai allavaa, nalla neram allavaa\n      Dm              A          Bb       Dm\nInnum vaanam paartha bhoomi pola vazhalaguma\n\n[Stanza]\nDm / A / Gm / A / Dm  (chromatic descend)\n\n[Outro]\nDm                A\nPaattu paada vaa, paarthu pesa vaa\nGm                A\nPaadam solla vaa, parandhu sella Dm vaa"
+  },
+  {
+    "title": "Venmathi Venmathiye",
+    "key": "Am",
+    "remarks": "",
+    "chords": "Am\nVenmathi Venmathiye Nillu\nAm\nNee Vaanukkaa Maegathukkaa Sollu\n\n[Verse]\nAm\nVenmathi Venmathiye Nillu\nAm\nNee Vaanukkaa Maegathukkaa Sollu\nAm\nVaanamthaam Unnudaiya Ishtam Enraal\nAm\nMaegathukillai Oru Nashtam\n      Dm\nUnnai Indrodu Naan Marapene Naan Marapene\nDm\nUnnaalae Nenjil Pootha Kaathal\nAm                          E\nMaelum Maelum Thunbam Thunbam Vaendaam - [ x 2 ]\n\nC              G\nJannalin Vazhi Vanthu Vizhunthathu\nC              G\nMinnalin Oli Athil Therinthathu\nD                       Bmin7\nAzhagu Devathai Athisaya Mugamae\nG\nAahaahaa\nC              G\nTheenpori Ezha Iru Vizhigalum\nAm              G\nTheekuchi Ena, Ennai Uraisidum\nD              Bmaj7\nKodi Pookalaai Malarnthathu Manamae\n\nAm                     Em\nAval Azhagai Paada Oru Mozhi Illayae\nF                  C\nAlanthu Paarka Pala Vizhi Illayae\nAm                     Em\nÈnnai Iruntha Pøthum Aaval Ennathillaiyae\nE                 E7\nMaranthupo En Manamae..\n\nAm\nVenmathi Venmathiye Nillu\nAm\nNee Vaanukkaa Maegathukkaa Sollu\nAm\nVaanamthaam Unnudaiya Ishtam Enraal\nAm\nMaegathukillai Oru Nashtam\n      Dm\nUnnai Indrodu Naan Marapene Naan Marapene\nDm\nUnnaalae Nenjil Pootha Kaathal\nAm                            E\nMaelum Maelum Thunbam Thunbam Vaendaam\n\n[Verse 2]\nC              G\nAnju Naal Varai Aval Pøzhinthathu\nC              G\nAasaiyin Mazhai Athil Nanainthathu\nD                         Bmin7\nNøøru Jenmangal Ninaivinil Irukkum..\nG\nAathu Pøal..\nC              G\nÈntha Naal Varum Uyir Urigiya\nAm              G\nAntha Naal Šugam Athai Ninaikkaiyil,\nD                       Bmin7\nRatha Naanangal Raathiri Vedikkum\n\nAm                       E\nOru Nimisham Køøda Ènnai Piriyavillai,\nF                    C\nVivaram Aaethum Aaval Aariyavillai\nAm                       E\nÈnnai Iruntha Pøthum Aaval Ènnathillaiyae\nE             E7\nMaranthupø Èn Manamae..\n\n[Bridge]\nAm\nLa Lai Lai Lai Lai La Le  (x4)\n\n[Outro]\n      Dm\nUnnai Indrodu Naan Marapene Naan Marapene\nDm\nUnnaalae Nenjil Pootha Kaathal\nAm                            E\nMaelum Maelum Thunbam Thunbam Vaendaam"
+  },
+  {
+    "title": "Pogathe",
+    "key": "D",
+    "remarks": "Transpose −2",
+    "chords": "D        D        Bm         G     A\nPogathe Pogathe… nee irundhal nan iruppen…\nD        D        Bm          G     A\npogathe pogathe… nee pirindhal nan erappen\nB                 B           E       F#         B\nunnodu vazhndha kalangal yaavum kanavai ennai moodudhadi..\nB                 B           E       F#         B\nyaarendru neeyum ennai paarkumbothu…uyire uyir pogudhadi…\nEm              Em         F#m                 G        A\nkallarail kooda jannal ondru vaithu.. undhan mugam paarpenadi… (x2)\n\n[Verse 1]\nF#m                     C#\nKalaindhalum megam athu meendum midhakkum…\nF#m                     C#\nadhu pola thane undhan kadhal enakkum…\nD           E              F#m           D\nnadaipadhai vilakka kadhal, vidindha udan anaipadharku..\nD           E              F#m           D\nneruppalum mudiyadhamma ninaivugalai azhipadharku..\nD        Bm       G    A      D      Bm       G   A\nunakkaga kathiruppen.. oh oh.. uirodu parthiruppen… oh oh\n\n[Chorus]\nD        D        Bm         G     A\nPogathe Pogathe… nee irundhal nan iruppen…\nD        D        Bm          G     A\npogathe pogathe… nee pirindhal nan erappen\nB                B            E       F#         B\nunnodu vazhndha kalangal yaavum kanavai ennai moodudhadi..\nB                B            E       F#         B\nyaarendru neeyum ennai paarkumbothu…uyire uyir pogudhadi…\nEm                          F#m                 G        A\nkallarail kooda jannal ondru vaithu.. undhan mugam paarpenadi…\n\n[Verse 2]\nF#m                     C#\nazhagana neram adhai nee than koduthai..\nF#m                     C#\nazhiyadha sogam adhaiyum nee than koduthai..\nD           E              F#m           D\nkan thoongum neram parthu kadavul vandhu ponadhu pol..\nD           E              F#m           D\nen vazhvil vandhe ponai… yematram thangalaye…\nD         Bm G  A\npenne nee il-lamal…\nD      Bm    G   A\nboologam iruttidhthe..\n\n[Chorus]\nD        D        Bm         G     A\nPogathe Pogathe… nee irundhal nan iruppen…\nD        D        Bm          G     A\npogathe pogathe… nee pirindhal nan erappen\nB                B            E       F#         B\nunnodu vazhndha kalangal yaavum kanavai ennai moodudhadi..\nB                B            E       F#         B\nyaarendru neeyum ennai paarkumbothu…uyire uyir pogudhadi…\nEm                          F#m                 G        A\nkallarail kooda jannal ondru vaithu.. undhan mugam paarpenadi…"
+  },
+  {
+    "title": "Kanmani",
+    "key": "C",
+    "remarks": "Start in Off (Jazzy)",
+    "chords": "C\nUndaana Kaayamengum Thannaalae Aaripøna\nF            G                 C\nMaayam Ènna Pønmaanae Pønmaanae.\nC\nÈnna Kaayam Aana Pøthum Èn Maeni Thaangi Køllum\n   F         G              C\nUnthan Maeni Thaangaathu Šenthaenae.\nEm                                   Dm                      F G\nÈnthan Kaathal Ènnavendru Šøllaamal Aenga Aenga Azhugai Vanthathu.\nEm                                                           Dm\nÈnthan Šøgam Unnai Thaakkum Ènrennumbøthu Vantha Azhugai Nindrathu.\nAm                                         Em\nManithar Unarnthu Kølla, Ithu Manitha Kaathal Alla.\nAm                     C\nAthaiyum Thaandi Punithama anathu.\n\n[Chorus]\nC            Em     Dm     G        C   Dm        G G\nKanmani Anbodu Kaathalan Naan Ezhuthum Kadithamae.\nC            Em    Dm         G     C     Dm      G G\nPonmani Un Veetil Sowkiyama Naan Ingu Sowkyamae.\nC                  C/G             C        C/G\nUnna Enni Paarkaiyil Kavithai Køttuthu.\nC                    C/G           C     C/G\nAtha Èzhutha Ninaikaiyil Vaarthai Muttuthu.\n\nC             Em          Dm     G           C          Dm  G G\nAbiraamiyae Thaalaattum Šaamiyae Naanthaanae Theriyumaa?\nC                   Em          Dm     G           C        Dm  G G\nŠivagaamiyae Šivanil Neeyum Paathiyae Athuvum Unnakku Puriyumaa?\nC      C/G       C     C/G      C\nŠuba Laaliyae Laaliyae Laali Laaliyae\n\nC        C/G         C      C/G      C\nAbiraami Laaliyae Laali Laaliyae.\n\nC                     F\nAthuvum onnaku theriyuma"
+  },
+  {
+    "title": "Raja Raja Chozhan",
+    "key": "Bm",
+    "remarks": "",
+    "chords": "Bm                   G\nRaaja raaja chozhan naan\nBm                             Em\nEnai aazhum kaadhal dhesam nee thaan\nBm                    G\nRaaja raaja chozhan naan\nBm                             Em\nEnai aazhum kaadhal dhesam nee thaan\n\nG           F#m      Bm\nPoovae kaadhal theevae\nBm          Em                    Bm\nMann meedhu sorgam vandhu pennaaga aanadhae\nBm       E             C\nUllaasa bomomi inghu undaanathae\n\n[Chorus 1]\nBm                  G\nRaaja raaja chozhan naan\n      Bm                 Em\nEnai aazhum kaadhal dhesam nee thaan\nG       F#m         Bm\nPoovae kaadhal theevae\n\n[Instrumental]\nBm A Bm A G Bm\nF# G F# G Em C Bm\n\n[Verse 1]\nBm\nKannodu kangal yettrum karpoora deepamae\nEm                                F#\nKai theendum podhu paayum minAsaaramae\nBm\nUllaasa medai melae orangha naadagam\nEm                     G     F#\nInbangal paadam sollum enthaayagam\n\nA                   D\nIngangu oonjalaaga naan pogiren\nA                          D\nAngangu aasai theeyil naan vegiren\nD                 F#\nUn raaga moganam en kaadhal vaaganam\nF#                   Bm\nSenthaamarai senthaen mazhai en aavi neeyae devi\n\nBm                  G\nRaaja raaja chozhan naan\nBm                        Em\nEnai aazhum kaadhal dhesam nee thaan\nG         F#m     Bm\nPoovae kaadhal theevae\n\n[Instrumental]\nBm\n\n[Verse 2]\nBm\nKalloora paarrkkum paarvai ulloora paayumae\nEm                           G     F#\nThullaamal thullum ullam sallaabamae\nBm\nVillodu ambu rendu kollaamal kolludha\nEm                        G      F#\nPenpaavai kangal endru poi solluthae\n\nA                       D\nMundhaanai moodum raani selvaakkilae\nA                       D\nEn kaadhal kangal pogum pallaakkilae\nD                F#\nThaenodai oramae neeraadum neramae\nF#                   Bm           Em   F#m Bm\nPullanguzhal thallaadumae pon meni kelaai raani\n\n[Chorus]\nBm                  Bm\nRaaja raaja chozhan naan\nBm                       Em\nEnai aazhum kaadhal dhesam nee thaan\n\nBm\nRaaja raaja chozhan naan\nBm                    Em\nEnai aazhum kaadhal dhesam nee thaan\nG            F#m     Bm\nPoovae kaadhal theevae\n\nA                   D\nMann meedhu sorgam vandhu pennaaga aanadhae\nA                          D\nUllaasa boomi inghu undaanathae\n\n[Chorus]\nBm                  G\nRaaja raaja chozhan naan\n      Bm                 Em\nEnai aazhum kaadhal dhesam nee thaan\nG       F#m         Bm\nPoovae kaadhal theevae"
+  },
+  {
+    "title": "Thendral Vanthu",
+    "key": "Bm",
+    "remarks": "Start with Charanam",
+    "chords": "Bm                       Bsus4            A        Bm\nThendral vanthu theendum  pothu enna  vannamo manasila\n Bm                       Bsus4            A         Bm\nThingal vanthu kaayum    pothu enna   vannamo ninappula\n\n Bm                                  F#m\nVanthu vanthu poguthamma ennamellam  vannamamma\n Bm                                F#m\nEnnagalukku aethapadi vannamellam  maarumamma\nE      Esus4                          Bm\nUnmaiyamma unmaiya naanum sonnen ponnamma chinna kanne\n\n[Verse 1]\n Bm                        F#m\nEvarum sollamale pookalum  vaasam veesuthu\n Bm\nUravum illamale iru manam aetho pesuthu\n\n Bm                           F#m\nEvarum sollamale kuyilalellam thena paaduthu\n Bm\nEthuvum illamale manasellam inippa inikkuthu\n\n Bm                   F#m         D\nOodai neerodai intha  ulagam athu pola\n Bm                    F#m         D\nOodam athu oodum intha kaalam athu pola\n\nBm           F#m E7                  Bm\nNilaiya nillathu ninaivugalum nirangale"
+  },
+  {
+    "title": "Inji Iduppazhagi",
+    "key": "Am",
+    "remarks": "",
+    "chords": "Am\ninji iduppazhagi manja sevappazhagi \nEm\nkalla chirippazhagi\nC       Em               Am\nmarakka manam koodudhillaye\nAm                Em\nmarakkumaa maaman ennam\nAm                Em\nmayakkudhey panja varnamm\nAm       Em          G        D\nmadiyile oonjal poda m-aaanee vaaa\n\n[Verse 1]\nE          Asus2      E           Asus2\nthanan tha-nichirukka thathalichu thaanirukka\nE            Dm6  Am\nun nenappil naan parichen thaamara-yai\nE          Asus2      E     Asus2\npunnava-nathiley peda kuyil koovayile\nE            Dm6  Am\nunnudaya vedhanaya naan arin-jen\nAm\nun kazhuthil maalayida onnirendu thozha thoda\nAm                     Esus E\nenna thavam senje-no en maamaaa\nAm\nvanna kili kayya thoda chinna chinna kolamida\nAm                     Esus E\nullam mattum onva-zhiye naaane\nAm                     D\nullam mattum onvazhiye naaane\n\n[End]\nAm\nInji idupazhagi manja sivapazhagi\nAm\nKallach sirippazhagi\nC             Em          Am\nMarakka manam kooduthilaiyae\nAm\nAdikkira kaththai kelu Asaiyura naththai kelu\nAm\nNadakira aththai kelu nee thanaa"
+  },
+  {
+    "title": "Manguyile",
+    "key": "Gm",
+    "remarks": "Karagattakaran · Ilaiyaraaja",
+    "chords": "[Charanam intro]\nGm   Bb   Cm7   D\n\n(Break)\nGmaj\nCm  D  Cm  D\n\nGm   D    Gm   D\nGm   Bb   Cm7  D\n\n[Pallavi — Male]\nGm                Bb\nMaanguyilae poonguyilae\nCm7              D\nSethi onnu kelu\nGm                       Bb\nUnnai maalaiyida thedi varum\n  Cm7        D\nNaalu endha naalu\n\n[Pallavi — Female]\nGm                Bb\nMaanguyilae poonguyilae\nCm7              D\nSethi onnu kelu\nGm                       Bb\nUnnai maalaiyida thedi varum\n  Cm7        D\nNaalu endha naalu\n\n[Refrain]\nGm                  Bb\nMuthu muthu kannaala\nCm7                D\nNaan suththi vandhen pinaala  (x2)\n\n[Verse 1 — Male]\nGm                       Bb\nKaalai thazhuvi nikkum\nCm7                       D\nKanaga mani kolusu yamma\nGm                       Bb\nNaanaaga maara ippo\nCm7                          D\nNenaikkudhamma manasu\n\n[Verse 1 — Female]\nGm                  Bb\nUllae irukureega\nCm7                   D\nVeliya enna pechchu aiyaa\nGm                       Bb\nOnnum puriyavillai\nCm7                  D\nManasu enga pochchu\n\n[Bridge]\nGm                            Bb\nIndha manasu nanjai nelandhaan\nCm7                            D\nVandhu vizhundha nalla vidhaidhaan\nGm                                Bb\nChandhiranathaan saatchiyum vachchu\nCm7                            D\nSonna kadhai thaan sondha kadhaidhaan\n\n[Pallavi reprise]\nGm   Bb   Cm7   D    (instr.)"
+  },
+  {
+    "title": "— BREAK —",
+    "key": "",
+    "remarks": "",
+    "chords": "",
+    "isBreak": true
+  },
+  {
+    "title": "Mandram Vantha",
+    "key": "Cm",
+    "remarks": "",
+    "chords": "Cm\nMandram vandha thendralukku manjam vara\nCm\nNenjam illaiyo anbae yen anbae\nCm\nThottavudan suttadhenna kattazhagu\nCm\nVatta nilavo kannae yen kannae\nCm      D#          Ab   A#          G7\nBoopaalamae koodadhennum vaanam undo soll..\n\n[Verse 1]\nCm                      Csus2\nMedaiyai polae vaazhkai alla\nCm       A#       D#\nNaadagam aanadhum vilaghi sella\nCm                  Csus2\nOdayai polae uravum alla\nCm         A#       D#\nPaadhaigal maariyae payanam sella\nG\nVinnodudhaan ulaavum velli vanna nilaavum\nG                    Cm     G\nYennodu nee vandhaal yenna… vaa…\n\nCm\nMandram vandha thendralukku manjam vara\nCm\nNenjam illaiyo anbae yen anbae\nCm\nThottavudan suttadhenna kattazhagu\nCm\nVatta nilavo kannae yen kannae\nCm      D#          Ab   A#          G7\nBoopaalamae koodadhennum vaanam undo soll..\n\n[Verse 2]\nCm                      Csus2\nThaamarai melae neerthuli pol\nCm          A#          D#\nThalaivanum thalaiviyum vaazhvadhenna\nCm                      Csus2\nNanbarghal polae vaazhvadharku\nCm         A#       D#\nMaalaiyum melamum thevaiyenna\nG\nSondhangalae illaamal bandha paasam kollaamal\nG                    Cm     G\nPoovae un vaazhkaidhaan yenna soll…\n\n[End]\nCm\nMandram vandha thendralukku manjam vara\nCm\nNenjam illaiyo anbae yen anbae\nCm\nThottavudan suttadhenna kattazhagu\nCm\nVatta nilavo kannae yen kannae\nCm      D#          Ab   A#          G7\nBoopaalamae koodadhennum vaanam undo soll.."
+  },
+  {
+    "title": "Mundhinam Partheney",
+    "key": "G",
+    "remarks": "",
+    "chords": "G\nMundhinam parthene\n           G\nParthathum thotrenae\n         Dm\nSalladai kannaaga\n         G\nNenjamum punnaanathe\n\n          G\nIththanai naalaaga\n           G\nUnnai naan paaraamal\n          Dm\nEngudhaan ponaeno\n          G\nNaatkalum veenaanathae\n\n            Am\nVaanaththil nee vennila\n            F\nYekkaththil naan theivathaa\n\n  D               Gm\nIppozhdu ennodu vanthaal enna\n    D                  Gm\nOor paarkka ondraaga sendraal enna\n  D               Gm\nIppozhdu ennodu vanthaal enna\n    D                  Gm\nOor paarkka ondraaga sendraal enna\n\n          G\nMundhinam parthene\n           G\nParthathum thotrenae\n         Dm\nSalladai kannaaga\n         G\nNenjamum punnaanathe\n\n          G\nIththanai naalaaga\n           G\nUnnai naan paaraamal\n          Dm\nEngudhaan ponaeno\n          G\nNaatkalum veenaanathae\n\nG       Am   D\nG       Am   D\nG       Am   D\nG       Am   D\nG       D  kadhale\nG       D  swasame\n\nC       Em\nC       G\nC       F    G\n\nG\nThula thottil unnai vaithu\nG\nNigar seiya ponnai vaithaal\nAm                      D\nThulaabaraam thorkkaatho perazhagae\n\nG\nMugam paarthu pesum unnai\nG\nMudhal kadhal sindhum kannai\nAm                 D\nAnaikkaamal povaeno aaruyirae\n\nEm                        Am\nNizhal pola vidaamal unnai thodarvenadi\nEm                       Am\nPugai pola padaamal pattu nagarvenadi\n\n[] - Single down strum\n\nGm                         D         [G]\nVinaa nooru kanaavum nooru vidai solladi\n\n          G\nMundhinam parthene\n           G\nParthathum thotrenae\n         Dm\nSalladai kannaaga\n        G\nUllamum punnaanathe\n\n          G\nIththanai naalaaga\n           G\nUnnai naan paaraamal\n          Dm\nEngudhaan ponaeno\n          G\nNaatkalum veenaanathae"
+  },
+  {
+    "title": "Kadhal Sadugudu",
+    "key": "G",
+    "remarks": "Alaipayuthey · A.R. Rahman",
+    "chords": "[Intro vibe]\nG  Em  G  Em   (chromatic descend whenever nodded)\n\n[Pallavi]\nG                              C        D\nKaadhal sadugudugudu, kannae thodu thodu  (x4)\n\nEm                                  C            G\nAlaiyae sitralaiyae, karai vanthu vanthu pogum alaiyae\nEm                              C        D            G\nEnnai thoduvaai methuvaai padarvaai endraal, nuraiyaai karaiyum alaiyae\n\n[Bridge]\nG                              Em\nTholaivil paarthaal aamaam engindraai\nC                       D\nArugil vandhaal illai endraai\n\n[Hook]\nG        Em       C        D\nNagila nagila nagilaa, oh oh oh\nG                C        D       G\nVilagidaathu nagilaa, oh oh  (x2)\n\n[Pre-charanam]\nG                                  C            D\nPazhagumpozhudhu kumariyaagi ennai velvaai pennae\nEm                                  C            G\nPadukai araiyil kuzhandhaiyaagi ennai kolvaai kannae\n\n[Pallavi]\nG                              C        D\nKaadhal sadugudugudu, kannae thodu thodu  (x4)\n\n[Charanam 1]\nG                                Em\nNeeratum nerathil en annaiyaginraai\nG                                Em\nVaazhaatum nerathil en pillaiyaginraai\nC                          D\nNaanaga thottaalo mullaagi poginraai\nC                          D       G\nNeeyaga thottaalo poovaga aaginraai\n\nEm                                C\nEn kanneer en thanneer ellamae nee anbae\nEm                                C\nEn inbam en thunbam ellamae nee anbae\nG                          D       G\nEn vaazhvum en saavum un kannil asaivilae\n\n[Hook]\nG        Em       C        D\nNagila nagila nagilaa, oh oh oh\nG                C        D       G\nVilagidaathu nagilaa, oh oh\n\n[Charanam 2]\nG                                  Em\nUn ullam naan kaana ennaayul pothaadhu\nG                                Em\nEn anbai naan solla un kaalam pothaadhu\nC                              D\nEn kaadhal inaiyenna un nenju kaanaadhu\nC                              D       G\nAanaalum en mutham sollaamal pogaadhu\n\nEm                              C\nKondaalum kondraalum en sondham needhaanae\nEm                              C\nNindraalum sendraalum un sondham naandhaanae\nG                          D       G\nUn vetkai pinnaalae en vaazhkai valaiyumae\n\n[Outro Hook]\nG        Em       C        D\nNagila nagila nagilaa, oh oh oh\nG                C        D       G\nVilagidaathu nagilaa, oh oh\n\nG                              C        D\nKaadhal sadugudugudu, kannae thodu thodu  (x4)"
+  },
+  {
+    "title": "Oru Maalai (Gajini)",
+    "key": "Em",
+    "remarks": "",
+    "chords": "Em\noru maalai ila veyil neram azhaghaana ilai udhir kaalam\nAm               C                   Bm                  Em\nsatru tholaivile aval mugam paarthen angae tholaindhavan naane\nBm              Em          Bm            Em\naval alli vitta poigal nadu naduve konjam meigal\nEm           D          Em             C\nidhazhoaram sirippoadu kaettu kondae nindraen\nBm                     Em\naval nindru pesum oru tharunam\nBm                   Em\nen vaazvhil sakkarai nimidam\nAm            C       Bm  Em\neerkum dhisayai avalidam kandaenae\n\n(oru maalai)\n\n[Stanza 1]\nEm\nPaarthu pazhgahiya naangu dhinangalil\nC                   Bm\nNadai udai bhaavanai maatri vittaal\nEm\nSaalai munaigalil thuridha unavugal\nC                      Bm\nVaangi kondum vaadikkai kaati vittaal\nG               Em\nKoochcham konda thendralaa\nG                 Em\nIval aayul neenda minnalaa\nEm        Am    C          B          Em\nUnakkettra aalaga enai maatri kondanae\n\nEm\noru maalai ila veyil neram azhaghaana ilai udhir kaalam\nAm               C                   Bm                  Em\nsatru tholaivile aval mugam paarthen angae tholaindhavan naane\nAm               C                   Bm                  Em\nsatru tholaivile aval mugam paarthen angae tholaindhavan naane\n\nEm\nPesum azhaghinai kaettu rasithida\nC                       Bm\npagal neram moththamaai koduthaenae\nEm\nThoongum azhaghinai paarthu rasithida\nC                      Bm\niravellam kann vizhiththu kidandhaenae\nG                Em\nPaniyil sendraal un mugam\nG               Em\nen mael neerai irangum\nEm        Am    C          B          Em\nOh thalai saaythu paarthaaye thadumaari poananae"
+  },
+  {
+    "title": "Panivizhum",
+    "key": "D",
+    "remarks": "Funk",
+    "chords": "D\nPani vizhum malar vanam un paarvai oru varam\nD\nPani vizhum malar vanam un paarvai oru varam\nG              D        F            D\nInivarum munivarum thadumaarum kanimaram\n\nD\nPani vizhum malar vanam un paarvai oru varam\nD\nPani vizhum malar vanam un paarvai oru varam\nG              D        F            D\nInivarum munivarum thadumaarum kanimaram, aehae\nG              D        F            D\nInivarum munivarum thadumaarum kanimaram\nD\nPanivizhum malar vanam un paarvai oru varam\n\nD            F      D\n Selai moodum ilanjolai\nD             F/D      D\n Maalai soodum malarmaalai\nD            F      D\n Selai moodum ilanjolai\nD             F/D      D\n Maalai soodum malarmaalai\nD                      F            D\nIruvadhu nilavugal nagamengum oli vidum, aehae\nD                       F              D\nIlamayin kanavugal vizhiyoram thulir vidum\n       D                                             N.C.                F\nKaigal idaigalil neligaiyil idaiveli kuraigaiyil yeriyum vilakku sirithu kangal moodum\n\nD\nPani vizhum malar vanam un paarvai oru varam\nD\nPani vizhum malar vanam un paarvai oru varam\nG              D        F            D\nInivarum munivarum thadumaarum kanimaram, aehae\nG              D        F            D\nInivarum munivarum thadumaarum kanimaram\n\nD            F        D\n Kaaman koyil siraivaasam\nD                      F/D       D\n Kaalai yezhundhaal ha ha parigaasam\nD            F        D\n Kaaman koyil siraivaasam\nD                 F/D      D\n Kaalai yezhundhaal parigaasam\nD                         F            D\nThazhuvidum pozhudhile idamaarum idhayame, aehae\nD                        F            D\nViyarvayin mazhayile payiraagum paruvame\n      D                                          N.C.                   F\nAadum ilaigalil vazhigira nilavoli iruvizhi mazhayil nanaindhu magizhum vaanampaadi\n\nD\nPani vizhum malar vanam un paarvai oru varam\nD\nPani vizhum malar vanam un paarvai oru varam\nG              D        F            D\nInivarum munivarum thadumaarum kanimaram, aehae\nG              D        F            D\nInivarum munivarum thadumaarum kanimaram\nD\nPani vizhum malar vanam\nD\nPani vizhum malar vanam\nD           D D   D D  N.C.\nPani vizhum malar vanam"
+  },
+  {
+    "title": "Manjal Veyil",
+    "key": "Em",
+    "remarks": "Vettaiyaadu Vilaiyaadu · Harris Jayaraj",
+    "chords": "[Intro]\nEm  Am  C  D\n\n[Pallavi]\nEm                              Am\nVennilavae, velli velli nilavae\nC                       D       Em\nPogum idam ellaamae, kooda kooda vanthaai\nEm                              Am\nVennilavae, velli velli nilavae\nC                       D       Em\nNatchathira pattaalam, koottikondu vanthaai\n\n[Hook]\nEm\nManjal veyil maalaiyilae\nEm\nMella mella iruludhae\nAm\nPalichidum vilakugal\nC       D       Em\nPagal pol kaattudhae\n\nEm\nThayakangal vilagudhae\nEm\nThavipugal thodarudhae\nAm\nAduthathu enna enna\nC       D       Em\nEndrae thaan theduthae\n\n[Pallavi reprise]\nEm                              Am\nVennilavae, velli velli nilavae\nC                       D       Em\nPogum idam ellaamae, kooda kooda vanthaai\n\n[Verse 1]\nAm                              Em\nUlagathin kadaisi naal, indru thaanaa enbadhu pol\nAm                              D\nPesi pesi theertha pinnum, etho ondru kuraiyudhae\nAm                              Em\nUllae oru chinnan chiru maragatha maatram vanthu\nAm                          D       Em\nKurukuru minnal ena, kurukkae odudhae\n\n[Hook]\nEm\nManjal veyil maalaiyilae\nEm\nMella mella iruludhae\nAm\nPalichidum vilakugal\nC       D       Em\nPagal pol kaattudhae\n\n[Bridge]\nEm                          Am\nVannangal vannangal attra, vazhiyil vazhiyil sila\nC                       G       D\nNadakkiraar… nadakkiraar\nEm                          Am\nManjalum pachaiyum kondu, peidhu peidhu mazhai\nC                       G       D\nNanaigiraar nanaigiraar\n\nEm                          C\nYaaro yaaro yaaro aval\nEm                          C\nHei… yaaro yaaro yaaro avan\nAm                              D\nOru kodum kodum vettikolla\nAm                                    F#\nIru thandavaalum otti chella…\n\n[Pallavi]\nEm                              Am\nVennilavae, velli velli nilavae\n\n[Verse 2]\nAm                              Em\nInnum konjum nelavendum, intha nodi intha nodi\nAm                          D\nEthanaiyo kaalam thalli, nenjorum panithuli\nAm                              Em\nNindru paarka neram indri, sendru kondae irundhenae\nAm                          D       Em\nNikka vaithaal pesa vaithaal, nenjorum panithuli\n\n[Outro]\nEm  Am  C  D  Em\nThath thara tha thara tha thara ra ra ra…"
+  },
+  {
+    "title": "Kikku Yerudhey",
+    "key": "E",
+    "remarks": "Padayappa · A.R. Rahman",
+    "chords": "[Intro whistling]\nE  F#m  B7  E\n\n[Pallavi]\nE\nOh oh oh oh, kicku eruthae\nE\nOh oh oh oh, vetkam ponathae\nF#m\nUllukkullae gyaanam ooruthae\nB7              E\nUnmai ellaam solla thonuthae\n\n[Hook]\nE\nVerum kambangali thinnavanum mannukkulla\nF#m\nAda thangabaspam thinnavanum mannukkulla\nA                              B7\nIntha vaazhkai vaazhathaan naam pirakkaiyil\nA           B7              E\nKaiyil enna kondu vanthom kondu sella…\n\n[Pallavi reprise]\nE\nOh oh oh oh, kicku eruthae\nE\nOh oh oh oh, vetkam ponathae\nF#m\nUllukkullae gyaanam ooruthae\nB7              E\nUnmai ellaam solla thonuthae\n\n[Verse 1]\nA                          E\nThangathai pootti vaithaai, vairathai pootti vaiththaai\nF#m                          B7\nUyirai pootta yedhu poottu\n\nA                          E\nKulanthai gyaani intha iruvar thavira\nF#m                          B7\nIngu sugamaai iruppavar yaar kaattu\n\nE                          F#m\nJeevan irukkumattum, vaazhkai namakku mattum\nA           B7              E\nIdhu thaan gnana siththar paattu  (x2)\n\nA                          E\nIntha boomi samam namakku, nam theruvukkul\nF#m                          B7              E\nMadha sandai jaadhi sandai vambethukku…\n\n[Pallavi]\nE\nOh oh oh oh, kicku eruthae\n\n[Bridge — Sajunaarae]\nA           E           A           E\nSajunaarae sajunaarae, sajunaarae sajunaarae  (x repeat)\n\n[Verse 2]\nA                              E\nThaayai thernthedukkum, thanthaiyai thernthedukkum\nF#m                              B7\nUrimai unnidathil illai (illai)\n\nA                              E\nMugathai thernthedukkum, nirathai thernthedukkum\nF#m                              B7\nUrimai unnidaththil illai (illai)\n\nA                              E\nPirappai thernthedukkum, irappai thernthedukkum\nF#m                              B7\nUrimai unnidathil illai illai\n\nA                          E\nEnni paarkkum velaiyilae, un vaazhkai mattum\nF#m                                  B7      E\nUndhan kaiyil undu, adhai vendru edu…\n\n[Outro]\nE\nKaiyil enna kondu vanthom kondu sella…\nE\nKondu sella… kondu sella…\nE\nOh oh oh oh oh oh oh…"
+  },
+  {
+    "title": "June Ponaal",
+    "key": "Gm",
+    "remarks": "Unnale Unnale · Harris Jayaraj · transposed −4",
+    "chords": "[Pallavi]\nGm                     Gm\nJune ponaal july kaattrae\n  Cm                A\nKaN paarthaa kaadhal kaattrae\nGm                     Gm\nPoo pooththaa thaen varumae\n  A                Dm\nPeN paarthaa thee varumae\n\nGm                  Gm\nEnnaachchu thoNaaliyae\n  Cm                A\naedhaachchu theriyaaliyae\nGm                  Gm\nNatpaachchu love illaiyae\n  A           Dm\nLove aachchu natpillaiyae\n\n[Verse 1]\nGm\nNaetru enbadhum kaiyyil illai\nDm\nNaaLai enbadhum paiyyil illai\nCm\nIndru mattumae nenjil michcham uNdu\nA\nThOzhaa..\n\nGm\nMoththa kooththukkaL yaarukkaaga\nDm                Cm\nMoththa bhoomiyum kooththukkaaga thaan\n A\nanbae..\n\n[Charanam]\nGm                  Dm\nAraikkuLLae mazhai varumaa\nGm                  Dm\nVeLiyae vaa kudhukalamaa\nGm\nIndha bhoomi pandhu\n A\nEngaL koodai pandhu\nGm\nAndha vaanam vandhu\n A\nKoorai seidhadhu indru\n\nGm           Dm7\nKarai irukkum nilavinai salavai sei\nGm           Dm7\nSirai irukkum manangaLai paravai sei\nGm           A          Dm\nEndha malargaLum kaNNeer sindhi kaNdadhillai\n\n[Pallavi]\nGm                     Gm\nJune ponaal july kaattrae"
+  },
+  {
+    "title": "Ennai Konjam Maatri",
+    "key": "Am",
+    "remarks": "Kaakha Kaakha · Harris Jayaraj",
+    "chords": "[Intro]\nAm  Dm  C  G  F  Am\n\n[Pallavi — Male]\nAm                          Dm\nSiragugal neeludhae, paravaigal polavae\nC                       G\nVinveli thandiyae, thulli thulli pogudhae\n\nAm                          Dm\nPudhuvidha anubhavam, nodiyinil perugidum\nC                       G\nIruvarin uyirayum, alli alli pogudhae\n\n[Chorus]\nAm                          Dm\nEnnai konjam maatri, en nenjil unnai ootri\nF               G               Am\nNee ennai mella mella kolladhae\n\nAm                          Dm\nNetrum indrum vaera, indru kaanum naanum naanaa\nF               G               Am\nUn pechchil ennai veezhththi selladhae\n\n[Bridge — Female]\nAm                              Dm\nOnnae onnu sollanum, un mugaththai paathu sollanum\nF               G               Am\nThanimai konjam kidaikka koodaadhaa\n\nAm                              Dm\nNaanum maari ponadhae, en nalinam koodi ponadhae\nF               G               Am\nAdhu therindhaal neeyae, solla koodaadhaa\n\nF                       C\nWoahu woah aaa, woahu woah aaa\nG                       Am\nYaarai naan ketppen, nee solvaayaa\n\n[Verse 1]\nAm                          Dm\nVarugira vazhigalil malargalin koottamundu\nF               G               Am\nOru murai kooda nindru rasithadhillai\n\nAm                          Dm\nIndru mattum konjam nindru oru poovai killi kondu\nF               G               Am\nSiripudan selven endru ninaithadhillai\n\n[Female]\nF                       C\nNee killum pookkalai, naan soodi kollavae\nG                       Am\nEndrae ennam indru vandhaachae\n\nF                       C\nAanaalum nerilae, eppodhum polavae\nG                                    Am\nIyalbaaga pesi povadhu endraachae\n\n[Chorus reprise]\nAm                          Dm\nEnnai konjam maatri, en nenjil unnai ootri\nF               G               Am\nNee ennai mella mella kolladhae\n\n[Verse 2 — Male]\nAm                          Dm\nEnnai ingae vara seidhaai, yennanavoo pesa seidhaai\nF               G               Am\nPunnagaigal pookka seidhaai, innum yenna\n\nAm                          Dm\nAriginil amarndhu ennai uttru uttru paarkkum undhan\nF               G               Am\nThuru thuru paarvaikundaan arththam yenna yenna\n\n[Female]\nF                          C\nEn paarvai pudhusudhaan, en pechum pudhusudhaan\nG                          Am\nUnnalae naanum maariponenae\n\nF                          C\nKoottaththil ennai dhaan, un kangal thedanum endrellam\nG                          Am\nEnnum payiththiyam aanenae\nLa la laa la la la la la la laa…\n\n[Outro]\nAm                          Dm\nEnnai konjam maatri…\nF               G               Am\nNee ennai mella mella kolladhae"
+  },
+  {
+    "title": "Ullala",
+    "key": "Bm",
+    "remarks": "",
+    "chords": "    Bm\nHey eththanai santhosam\nBm\nDhinamum kottuthu unmela\n    F#\nNee manasu vachuputta Rasikka\nF#\nmudiyum unnaala\n\n    Bm\nNee sindhura kanneerum Inga\nEm\nnerantharam illa\n     F#\nIdhu purinjikittaalae\nF#\nIngae neethanda Aala\n\n    Bm\nHey eththanai santhosam\nBm\nDhinamum kottuthu unmela\n    F#\nNee manasu vachuputta\nF#\nRasikka mudiyum unnaala\n\nBm\nNee sindhura kanneerum Inga\nEm\nnerantharam illa\n     F#\nIdhu purinjikittaalae\nF#\nIngae neethanda Aala\n\nD\nKanna Kattikittu Ellaam iruttunu\nA\nNee koovatha Koovaathappa\nD\nVattam pottukittu Chinna ulagathil\nA\nNee vaazhaatha Vaazhaadhappaa\n\n      Bm\nEnaai Paar Naan Kaiya\nBm\nThatta Undaachu Ulagam\n    F#\nHey Naan Sona Pakkam Nikama Sozhalum\n    Bm\nDai En Kooda Senthu\nEm\nKoothaadum Nezhalum\nF#\nUllaara Eppodhum Ullaalaa Ullaalaa\n\n     Bm\nPaar Naan Kaiya Thatta Undaachu Ulagam\n    F#\nHey Naan Sona Pakkam Nikama Sozhalum\n    Bm\nDai En Kooda Senthu\nEm\nKoothaadum Nezhalum\nF#\nUllaara Eppodhum Ullaalaa Ullaalaa\n\nBm\nRibararibarey Ribaarey ribararibarey\nF#\nRibararibarey Ribaarey ribararibarey\nBm\nRibararibarey Ribaarey ribararibarey\nEm\nRibararibarey Ribaarey\nF#\nribapaa rabapapa\n\nBm\nUnakkaga Nillu Ethuvenum sollu\nF#\nSanthosam kudukaatha Edhunallum Thallu\n\nDm7\nAsaraadha Dhillu Irundhaa Nee Sollu\nF#\nEn Aalu Raja Nee En Kuda Nillu\n\nBm\nUnakkaga Nillu Edhuvenum Sollu\nF#\nSandhosham Kudukaadha Edhunallum Thallu\n\nBm\nAsaraadha Dhillu Irundhaa Nee\nEm       F#\nSollu En Aalu Raja Nee En Kuda Nillu\n\nD\nKaiyil Kedachadhu Tholanjaa Innum\nA\nRomba Pudichadhu Kedaikkum Aana\nD                            A\nAasa Adakkida Therinjaa Inga Ellam\nKaaladiyil Kedakkum"
+  },
+  {
+    "title": "Rowdy Baby",
+    "key": "Em",
+    "remarks": "Maari 2 · Yuvan Shankar Raja",
+    "chords": "[Intro groove]\nEm  Em  D  C   Em\n\n[Pallavi — Female]\nEm                       D\nHey en goli sodavae, en kari kozhambae\n           C              B            Em\nUn kutty puppy naan, take me, take me\n\n[Pallavi — Male]\nEm                       D\nHey en silku satta, nee weightu katta\n           C            B          Em\nLoveu sotta sotta, talk me, talk me\n\n[Pre-chorus]\nEm                          D\nHey my dear machaan, nee manasu vechaa\n  C              B            Em\nNamma orasikkalaam, nenju jigu jigu jaa\n\nEm                            D\nHey my dear raani, en dreamula vaa nee\n  C                B               Em\nNamma onna sera, fire pathikkiruchaa\n\n[Chorus]\nEm                            D\nRaa… namma beachu, pakkam pothaam\n  C                              B          Em\nOru dappang kuthu vesthaam, nee ennudaiya rowdy baby\nEm                              D\nRaa… you are my only girlfriendu\n  C                              B               Em\nI will give you poochendu, we will make us new trendu baby\n\n[Hook]\nEm   B   D   Em\nPothaam… vesthaam… rowdy baby…\nEm   B   D   Em\nGirlfriendu… poochendu… new trendu baby\nEm   B   D   Em\nRowdy baby… ra ra ra ra rowdy baby…\n\n[Verse 1 — Female]\nEm                              D\nUnnala yei moodaachu, my hormoneu balanceu damageu\n[Male]\nEm                                  D\nYei kamaatchi en meenatchi, intha maarikkum unmela kannaachi\n\n[Female]\n  C                          B\nOne plus onnu two maamaa, you plus me three maamaa\n[Male]\n  C                                B               Em\nVaadi jhansi raani, en krishnaveni, I will buy you pony, aththa ottinnu vaa nee\n\n[Female]\nEm                            D\nEn mandhiravaadhi, nee kedikku kedi\n  C                          B           Em\nNaan unnulla paadhi, namma semma jodi\n\n[Hook]\nEm  B  D  Em\nRowdy baby… (x repeat)\n\n[Pallavi reprise]\nEm                       D\nHey en goli sodavae, en kari kozhambae"
+  }
+]
+</script>
+
+<script>
+  const songsAll = JSON.parse(document.getElementById('songs-data').textContent);
+  const songs = songsAll.filter(s => !s.isBreak);
+
+  const CHROMATIC = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+  const FLAT_MAP  = {Db:'C#', Eb:'D#', Fb:'E', Gb:'F#', Ab:'G#', Bb:'A#', Cb:'B'};
+  const FLAT_DISPLAY = {'C#':'Db','D#':'Eb','F#':'Gb','G#':'Ab','A#':'Bb'};
+
+  let transposeVal = 0;
+  let currentSong = null;
+  let useFlatDisplay = false;
+  let isDark = false;
+  let chordsOn = true;
+  let fontSize = 1;
+
+  try {
+    const saved = JSON.parse(localStorage.getItem('chordbook_prefs_v2') || '{}');
+    if (saved.dark) { isDark = true; document.documentElement.setAttribute('data-theme','dark'); }
+    if (saved.chordsOff) { chordsOn = false; document.body.classList.add('chords-off'); }
+    if (typeof saved.fs === 'number') fontSize = saved.fs;
+  } catch (e) {}
+  function savePrefs() {
+    try {
+      localStorage.setItem('chordbook_prefs_v2', JSON.stringify({
+        dark: isDark, chordsOff: !chordsOn, fs: fontSize
+      }));
+    } catch (e) {}
+  }
+
+  function transposeNote(root, n) {
+    const norm = FLAT_MAP[root] || root;
+    let idx = CHROMATIC.indexOf(norm);
+    if (idx === -1) return root;
+    idx = ((idx + n) % 12 + 12) % 12;
+    const newRoot = CHROMATIC[idx];
+    if (useFlatDisplay && FLAT_DISPLAY[newRoot]) return FLAT_DISPLAY[newRoot];
+    return newRoot;
+  }
+  function transposeChordFull(chord, n) {
+    if (n === 0) return chord;
+    if (chord.includes('/')) {
+      const parts = chord.split('/');
+      return transposeChordFull(parts[0], n) + '/' + parts.slice(1).map(p => {
+        const m2 = p.match(/^([A-G][#b]?)(.*)$/);
+        return m2 ? transposeNote(m2[1], n) + m2[2] : p;
+      }).join('/');
+    }
+    const m = chord.match(/^([A-G][#b]?)(.*)$/);
+    if (!m) return chord;
+    return transposeNote(m[1], n) + m[2];
+  }
+
+  function isChordLine(line) {
+    const t = line.trim();
+    if (!t) return false;
+    if (/^\[.+\]$/.test(t)) return false;
+    if (/^Page \d+\/\d+$/i.test(t)) return false;
+    let stripped = t.replace(/\b[A-G][#b]?(?:maj7?|min7?|m7b5|m7|M7|dim7?|aug|sus[24]?|add\d|m|7|9|11|13|6|5|2)?(?=[\s\/\\|)\]\-,(]|$)/g, '');
+    stripped = stripped.replace(/[\s\/\\|.%x×#()\[\]\-,\d*~×]/gi, '');
+    stripped = stripped.replace(/N\.C\./g, '');
+    return stripped.length <= 3;
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderChordOnlyLine(line, n) {
+    const result = [];
+    let i = 0;
+    while (i < line.length) {
+      const ch = line[i];
+      if (/[A-G]/.test(ch)) {
+        const sub = line.slice(i);
+        const m = sub.match(/^([A-G][#b]?)((?:maj7?|min7?|m7b5|m7|M7|dim7?|aug|sus[24]?|add\d|m|7|9|11|13|6|5|2)?)/);
+        if (m && m[0].length > 0) {
+          const rightCh = line[i + m[0].length] || ' ';
+          if (/[\s\/\\|)\]\-,(]/.test(rightCh) || (i + m[0].length) === line.length) {
+            const orig = m[0];
+            const transposed = transposeChordFull(orig, n);
+            result.push('<span class="chord-token">' + escHtml(transposed) + '</span>');
+            const delta = orig.length - transposed.length;
+            if (delta > 0) result.push(' '.repeat(delta));
+            if (delta < 0) {
+              let need = -delta;
+              let j = i + orig.length;
+              while (need > 0 && j < line.length && line[j] === ' ') { j++; need--; }
+              i = j;
+              continue;
+            }
+            i += orig.length;
+            continue;
+          }
+        }
+      }
+      result.push(escHtml(ch));
+      i++;
+    }
+    return result.join('');
+  }
+
+  function renderInlineBracketLine(line, n) {
+    return escHtml(line).replace(/\[([A-G][#b]?[^\[\]]*?)\]/g, (_, chord) => {
+      const t = transposeChordFull(chord.trim(), n);
+      return '<span class="chord-token">' + escHtml(t) + '</span>';
+    });
+  }
+
+  function renderChordText(rawText, n) {
+    const lines = rawText.split('\n');
+    let html = '';
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const trimmed = line.trim();
+      if (!trimmed) { html += '<div class="blank-line"></div>'; continue; }
+      if (/^\[[^\[\]]+\]$/.test(trimmed)) {
+        const inner = trimmed.slice(1, -1);
+        if (/^[A-G][#b]?(?:m|min|maj|dim|aug|sus|add|7|9|6|5|2|11|13)?\d*$/.test(inner.trim())) {
+          html += '<div class="lyric-line inline-line">' + renderInlineBracketLine(line, n) + '</div>';
+        } else {
+          html += '<div class="section-label">' + escHtml(inner) + '</div>';
+        }
+        continue;
+      }
+      if (/^Page \d+\/\d+$/i.test(trimmed)) {
+        html += '<div class="page-marker">' + escHtml(trimmed) + '</div>';
+        continue;
+      }
+      if (/\[[A-G][#b]?[^\[\]]*?\]/.test(line)) {
+        html += '<div class="lyric-line inline-line">' + renderInlineBracketLine(line, n) + '</div>';
+        continue;
+      }
+      if (isChordLine(line)) {
+        html += '<div class="chord-line">' + renderChordOnlyLine(line, n) + '</div>';
+        continue;
+      }
+      html += '<div class="lyric-line">' + escHtml(line) + '</div>';
+    }
+    return html;
+  }
+
+  function renderList(filter) {
+    const container = document.getElementById('songList');
+    container.innerHTML = '';
+    const f = (filter || '').toLowerCase().trim();
+    let realIndex = 0;
+    let setItemCount = 0;
+
+    const setHdr = document.createElement('div');
+    setHdr.className = 'set-header first';
+    setHdr.innerHTML = '<div class="set-eyebrow">Set One</div><div class="set-title">Pallavi</div>';
+    container.appendChild(setHdr);
+
+    let shown = 0;
+
+    songsAll.forEach((song) => {
+      if (song.isBreak) {
+        if (!f) {
+          const div = document.createElement('div');
+          div.className = 'break-divider';
+          div.innerHTML = '<span class="label">interlude</span>';
+          container.appendChild(div);
+          const hdr = document.createElement('div');
+          hdr.className = 'set-header';
+          hdr.innerHTML = '<div class="set-eyebrow">Set Two</div><div class="set-title">Charanam</div>';
+          container.appendChild(hdr);
+          setItemCount = 0;
+        }
+        return;
+      }
+      const i = realIndex++;
+      const hay = (song.title + ' ' + (song.key || '') + ' ' + (song.remarks || '')).toLowerCase();
+      if (f && hay.indexOf(f) === -1) return;
+      shown++;
+      setItemCount++;
+
+      const div = document.createElement('div');
+      div.className = 'song-item';
+      const k = song.key || '';
+      div.innerHTML =
+        '<span class="song-num">' + String(setItemCount).padStart(2,'0') + '</span>' +
+        '<span class="song-title">' + escHtml(song.title) + '</span>' +
+        '<span class="song-meta">' +
+          (k ? '<span class="song-key">' + escHtml(k) + '</span>' : '') +
+          (song.remarks ? '<span class="song-remark" title="' + escHtml(song.remarks) + '">' + escHtml(song.remarks) + '</span>' : '') +
+          '<span class="song-arrow">›</span>' +
+        '</span>';
+      div.onclick = () => openSong(i);
+      container.appendChild(div);
+    });
+
+    if (f && shown === 0) {
+      container.innerHTML = '<div class="no-results">No songs match "' + escHtml(filter || '') + '"</div>';
+    }
+    document.getElementById('songCount').textContent = songs.length;
+  }
+
+  function filterList() {
+    renderList(document.getElementById('searchInput').value);
+  }
+
+  function openSong(idx) {
+    currentSong = idx;
+    transposeVal = 0;
+    document.getElementById('tVal').textContent = '0';
+    renderChordView();
+    document.getElementById('list-view').style.display = 'none';
+    document.getElementById('chord-view').style.display = 'block';
+    document.getElementById('backBtn').classList.add('visible');
+    document.querySelectorAll('#headerControls .song-ctrl').forEach(el => el.style.display = 'inline-flex');
+    document.getElementById('headerTitle').innerHTML = escHtml(songs[idx].title);
+    window.scrollTo(0,0);
+  }
+
+  function renderChordView() {
+    const song = songs[currentSong];
+    document.getElementById('songTitle').textContent = song.title;
+    const meta = document.getElementById('chordMeta');
+    let metaHtml = '';
+    const k = song.key;
+    if (k) {
+      const tk = transposeChordFull(k, transposeVal);
+      metaHtml += '<span class="meta-tag key-tag">Key · ' + escHtml(tk) +
+        (transposeVal !== 0 ? ' <span style="opacity:.5">(' + escHtml(k) + ' ' + (transposeVal>0?'+':'') + transposeVal + ')</span>' : '') +
+        '</span>';
+    }
+    if (song.remarks) {
+      metaHtml += '<span class="meta-tag remark-tag">' + escHtml(song.remarks) + '</span>';
+    }
+    meta.innerHTML = metaHtml;
+
+    document.getElementById('prevBtn').disabled = currentSong === 0;
+    document.getElementById('nextBtn').disabled = currentSong === songs.length - 1;
+    document.getElementById('prevBtn').textContent = currentSong > 0 ? '← ' + songs[currentSong-1].title : '← Prev';
+    document.getElementById('nextBtn').textContent = currentSong < songs.length-1 ? songs[currentSong+1].title + ' →' : 'Next →';
+    document.getElementById('chordContentInner').innerHTML = renderChordText(song.chords, transposeVal);
+  }
+
+  function showList() {
+    document.getElementById('list-view').style.display = 'block';
+    document.getElementById('chord-view').style.display = 'none';
+    document.getElementById('backBtn').classList.remove('visible');
+    document.querySelectorAll('#headerControls .song-ctrl').forEach(el => el.style.display = 'none');
+    document.getElementById('headerTitle').innerHTML = 'Evening Raga<span class="sub">Chord Book</span>';
+    currentSong = null;
+    window.scrollTo(0,0);
+  }
+
+  function navigateSong(dir) {
+    const next = currentSong + dir;
+    if (next < 0 || next >= songs.length) return;
+    currentSong = next;
+    transposeVal = 0;
+    document.getElementById('tVal').textContent = '0';
+    renderChordView();
+    document.getElementById('headerTitle').innerHTML = escHtml(songs[next].title);
+    window.scrollTo(0, 0);
+  }
+
+  function transpose(n) {
+    transposeVal = transposeVal + n;
+    if (transposeVal > 11) transposeVal -= 12;
+    if (transposeVal < -11) transposeVal += 12;
+    document.getElementById('tVal').textContent = (transposeVal > 0 ? '+' : '') + transposeVal;
+    renderChordView();
+  }
+
+  function toggleTheme() {
+    isDark = !isDark;
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : '');
+    document.getElementById('themeSwitch').classList.toggle('on', isDark);
+    document.getElementById('themeLabel').textContent = isDark ? '☾' : '☼';
+    savePrefs();
+  }
+  function toggleChords() {
+    chordsOn = !chordsOn;
+    document.body.classList.toggle('chords-off', !chordsOn);
+    document.getElementById('chordSwitch').classList.toggle('on', chordsOn);
+    savePrefs();
+  }
+  function changeFontSize(d) {
+    fontSize = Math.max(0, Math.min(3, fontSize + d));
+    document.body.classList.remove('fs-sm','fs-md','fs-lg','fs-xl');
+    document.body.classList.add(['fs-sm','fs-md','fs-lg','fs-xl'][fontSize]);
+    document.getElementById('fsVal').textContent = ['S','M','L','XL'][fontSize];
+    savePrefs();
+  }
+
+  if (isDark) {
+    document.getElementById('themeSwitch').classList.add('on');
+    document.getElementById('themeLabel').textContent = '☾';
+  }
+  if (chordsOn) document.getElementById('chordSwitch').classList.add('on');
+  document.body.classList.add(['fs-sm','fs-md','fs-lg','fs-xl'][fontSize]);
+  document.getElementById('fsVal').textContent = ['S','M','L','XL'][fontSize];
+
+  const stBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) stBtn.classList.add('visible');
+    else stBtn.classList.remove('visible');
+  });
+
+  document.addEventListener('keydown', e => {
+    if (currentSong === null) return;
+    if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
+    if (e.key === 'ArrowLeft') navigateSong(-1);
+    else if (e.key === 'ArrowRight') navigateSong(+1);
+    else if (e.key === '=' || e.key === '+') transpose(+1);
+    else if (e.key === '-' || e.key === '_') transpose(-1);
+    else if (e.key === 'c' || e.key === 'C') toggleChords();
+    else if (e.key === 'Escape') showList();
+  });
+
+  renderList();
+</script>
+</body>
+</html>
